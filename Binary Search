@@ -1,0 +1,39 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+vector <int> v={1,2,3,4,5,6,7,8,9,10};
+int n=v.size();
+int low=0;
+int high=n-1;
+int mid;
+cout<<"Enter the element you want to find"<<endl;
+int key,flag=-1;
+cin>>key;
+while(low<=high)
+{
+    mid=(low+high)/2;
+    cout<<"LowIndex= "<<low<<" HighIndex= "<<high<<" MidIndex= "<<mid<<endl;
+    if (v[mid]==key)
+    {
+        cout<<"Element found at "<<mid+1<<" position"<<endl;
+        flag++;
+        break;
+    }
+    else if(key<v[mid])
+    {
+        high=mid-1;
+    }
+    else
+    {
+        low=mid+1;
+    }
+}
+if(flag==-1)
+{
+    cout<<"Element not found"<<endl;
+}
+    return 0;
+}
