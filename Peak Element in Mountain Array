@@ -1,0 +1,41 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+vector <int> v={1,2,3,56,89,112,223,334,554,785,999,1254,3455,9,8,7,4,2,1};
+int n=v.size();
+int low=0;
+int high=n-1;
+int mid,ans;
+int key,flag=-1;
+while(low<=high)
+{
+    mid=(low+high)/2;
+    cout<<"LowIndex= "<<low<<" HighIndex= "<<high<<" MidIndex= "<<mid<<endl;
+    if (v[mid]>v[mid-1] && v[mid]>v[mid+1])
+    {
+        ans=mid;
+        flag++;
+        break; 
+    }
+    else if(v[mid]>v[mid-1])
+    {
+        low=mid+1;
+    }
+    else
+    {
+        high=mid-1;
+    }
+}
+if(flag==-1)
+{
+    cout<<"Element not found"<<endl;
+}
+else
+{
+    cout<<"Peak Element is "<<v[ans]<<" and was found at "<<ans+1<<" position"<<endl;
+}
+    return 0;
+}
