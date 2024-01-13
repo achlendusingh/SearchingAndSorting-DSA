@@ -1,7 +1,7 @@
 #include <iostream>
 #include<bits/stdc++.h>
 using namespace std;
-
+//starting of main section
 int main()
 {
 cout<<"Enter the number whose sqrt you want too find"<<endl;
