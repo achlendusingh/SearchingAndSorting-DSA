@@ -1,0 +1,63 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+int main() {
+    // Write C++ code here
+    cout<<"Enter the dividend: ";
+  int dividend;
+  cin>>dividend;
+  cout<<"enter the divisor: ";
+  int divisor;
+  cin>>divisor;
+  int precision;
+  cout<<"Enter precision: ";
+  cin>>precision;
+  int low=0,high=abs(dividend);
+  int mid,ans;
+  while(low<=high)
+  {
+      mid=(low+high)/2;
+      if(mid*abs(divisor)==abs(dividend))
+      {
+          ans=mid;
+          break;
+      }
+      else if(mid*abs(divisor)<abs(dividend))
+      {
+          ans=mid;
+          low=mid+1;
+      }
+      else
+      {
+          high=mid-1;
+      }
+  }
+  double finalAns=ans;
+  cout<<"Initial Ans is: "<<finalAns<<endl;
+  double step=0.1;
+  for(int i=0;i<precision;i++)
+  {
+      for(double j=finalAns;j<=abs(dividend);j+=step)
+      {
+          if(j*abs(divisor)<=abs(dividend))
+          {
+              finalAns=j;
+          }
+          else
+          {
+                break;
+          }
+      }
+      step=step/10;
+  }
+  if ( (dividend<0 && divisor>0) || (dividend>0 && divisor<0) )
+  {
+      finalAns*=-1;
+  }
+  else
+  {
+      finalAns=finalAns;
+  }
+  cout<<"The answer is: "<<finalAns;
+    return 0;
+}
