@@ -1,0 +1,50 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+    // Write C++ code here
+   vector <int> v{10,3,40,20,50,80,70};
+   int low=0;
+   int high=v.size();
+   int mid;
+   cout<<"Enter the element you want to search: "<<endl;
+   int k;
+   cin>>k;
+   int flag=-1;
+   while(low<=high)
+   {
+       mid=(low+high)/2;
+       if (v[mid]==k )
+       {
+           cout<<"Element found"<<endl;
+            flag++;
+           break;
+       }
+       if (v[mid+1]==k && mid+1<=high)
+       {
+           cout<<"Element found"<<endl;
+            flag++;
+           break;
+       }
+       if (v[mid]==k && mid-1>=low)
+       {
+           cout<<"Element found"<<endl;
+            flag++;
+           break;
+       }
+        if (k>v[mid])
+       {
+           low=mid+2;
+       }
+       else
+       {
+           high=mid-2;
+       }
+   }
+  if(flag==-1)
+  {
+      cout<<"Element not found"<<endl;
+  }
+    return 0;
+}
