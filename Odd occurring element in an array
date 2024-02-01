@@ -30,11 +30,11 @@ int main() {
       {
           if(v[mid]==v[mid+1])
           {
-              low+=2;
+              low=mid+2;
           }
           else if (v[mid]==v[mid-1])
           {
-              high-=2;
+              high=mid-2;
           }
           else
           {
@@ -46,11 +46,11 @@ int main() {
       {
           if(v[mid]==v[mid-1])
           {
-              low+=1;
+              low=mid+1;
           }
           else
           {
-              high-=1;
+              high=mid-1;
           }
       }
   }
