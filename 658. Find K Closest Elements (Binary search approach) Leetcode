@@ -1,0 +1,56 @@
+class Solution {
+public:
+ int lowerbo (vector<int> &arr,int x)
+ {
+     int low=0;
+     int high=arr.size()-1;
+     int ans=high;
+     int mid;
+     while(low<=high)
+     {
+         mid=(low+high)/2;
+         if(arr[mid]>=x)
+         {
+            ans=mid;
+            high=mid-1;
+         }
+         else 
+         {
+           low=mid+1;
+         }
+        //  else
+        //  {
+        //      high=mid-1;
+        //  }
+     }
+     return ans;
+ }
+     vector<int> bs (vector<int> &arr,int k,int x)
+     {
+        int high=lowerbo(arr,x);
+        int low=high-1;
+        while(k--)
+        {
+            if(low<0)
+            {
+                high++;
+            }
+           else if(high>=arr.size())
+            {
+                low--;
+            }
+           else if(x-arr[low]>arr[high]-x)
+            {
+                high++;
+            }
+            else
+            {
+                low--;
+            }
+        }
+        return vector<int>(arr.begin()+low+1,arr.begin()+high);
+     }
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+          return bs(arr,k,x);
+    }
+};
