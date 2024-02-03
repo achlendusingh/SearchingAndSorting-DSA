@@ -1,0 +1,84 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+bool isPossible(vector<int> &r,int p,int mid)
+{
+   int currP=0;
+    for(int i=0;i<r.size();i++)
+    {
+      int rank=r[i];
+      int timer=0;
+      int j=1;
+       while(true)
+       {
+           if(timer+j*rank<=mid)
+           {
+           timer+=j*rank;
+            currP++;
+            j++;
+           }
+           else
+           {
+           break;
+           }
+       }
+       if(currP>=p)
+       return true;
+    }
+    return false;
+}
+
+int roti(vector<int>&r,int p)
+{
+    int low=0;
+    int maxEl=*max_element(r.begin(),r.end());
+    int high=maxEl*(p*(p+1)/2);
+    int mid,ans=-1;
+    while(low<=high)
+    {
+        mid=low+(high-low)/2;
+        if (isPossible(r,p,mid))
+        {
+            ans=mid;
+            high=mid-1;
+        }
+        else
+        {
+            low=mid+1;
+        }
+    }
+    return ans;
+}
+
+int main() {
+    // Write C++ code here
+    int t,h;
+    cout<<"Enter the number of testcases: ";
+    cin>>t;
+     vector<int>op;
+     h=t;
+    while(t--)
+    {
+        int p,n,a;
+        cout<<"Enter number of rotis: ";
+        cin>>p;
+        cout<<"Enter number of cooks: ";
+        cin>>n;
+        vector<int>r;
+        cout<<"Enter ranks:";
+        for (int i=0;i<n;i++)
+        {
+            cin>>a;
+            r.push_back(a);
+        }
+        op.push_back(roti(r,p));
+    }
+      cout<<"Time taken:"<<endl;
+      for(int i=0;i<h;i++)
+      {
+          cout<<op[i]<<endl;
+      }
+    return 0;
+}
