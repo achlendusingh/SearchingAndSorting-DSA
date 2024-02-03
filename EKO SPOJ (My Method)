@@ -1,0 +1,60 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+typedef long long ll;
+using namespace std;
+
+bool isPossible(vector<ll>&v,ll mid,ll m)
+{
+ ll sum=0;
+ for (ll i=0;i<v.size();i++)
+ {
+     ll foo=v[i]-mid;
+     if (foo>0)
+     {
+         sum=sum+foo;
+     }
+ }
+ if (sum>=m)
+ return true;
+ else
+ return false;
+}
+
+ll ekospoj(vector<ll>&v,ll m)
+{
+    ll end=*max_element(v.begin(), v.end());
+     ll start=end-m;
+    ll mid,ans=-1;
+    while(start<=end)
+    {
+        mid=start+(end-start)/2;
+        if (isPossible(v,mid,m)){
+            ans=mid;
+            start=mid+1;
+        }
+        else{
+            end=mid-1;
+        }
+    }
+    return ans;
+}
+
+int main() {
+    // Write C++ code here
+ll n,m,a;
+cout<<"Enter number of trees: ";
+cin>>n;
+cout<<"Enter amount of wood required: ";
+cin>>m;
+vector<ll>v;
+for (ll i=0;i<n;i++)
+{
+  cin>>a;
+  v.push_back(a);
+}
+sort(v.begin(), v.end());
+cout<<"The required height setting is: "<<ekospoj(v,m);
+
+    return 0;
+}
